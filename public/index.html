@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skyline Parkour</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <div id="menu" class="overlay">
+      <section class="shell">
+        <div class="hero">
+          <p class="eyebrow">HTML + WebSocket Multiplayer</p>
+          <h1>Skyline Parkour</h1>
+          <p class="lede">
+            Sprint across suspended rooftops, hit checkpoints, wall-jump through the neon lane, and share a room code
+            so friends can join the same server.
+          </p>
+        </div>
+
+        <div class="control-grid">
+          <label class="field">
+            <span>Runner Name</span>
+            <input id="player-name" type="text" maxlength="18" placeholder="NeonRunner" />
+          </label>
+
+          <label class="field">
+            <span>Server Name</span>
+            <input id="room-name" type="text" maxlength="24" placeholder="Friday Rooftop Lobby" />
+          </label>
+
+          <label class="field">
+            <span>Join Code</span>
+            <input id="room-code" type="text" maxlength="5" placeholder="AB12C" />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="create-room" class="primary">Create Server</button>
+          <button id="join-room" class="secondary">Join Server</button>
+          <button id="refresh-rooms" class="ghost">Refresh Servers</button>
+        </div>
+
+        <p id="status-line" class="status">Create a room or join an existing server.</p>
+
+        <section class="browser">
+          <div class="browser-head">
+            <h2>Public Servers</h2>
+            <p>Listed rooms are active on this Node server.</p>
+          </div>
+          <div id="room-list" class="room-list"></div>
+        </section>
+
+        <section class="tips">
+          <div>
+            <span class="tip-label">Move</span>
+            <strong>W A S D</strong>
+          </div>
+          <div>
+            <span class="tip-label">Jump / Double Jump</span>
+            <strong>Space</strong>
+          </div>
+          <div>
+            <span class="tip-label">Sprint</span>
+            <strong>Shift</strong>
+          </div>
+          <div>
+            <span class="tip-label">Respawn</span>
+            <strong>R</strong>
+          </div>
+          <div>
+            <span class="tip-label">Mouse Lock</span>
+            <strong>Click Canvas</strong>
+          </div>
+          <div>
+            <span class="tip-label">Note</span>
+            <strong>Desktop + HTTPS recommended for publishing</strong>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <div id="pause-panel" class="overlay hidden compact">
+      <section class="pause-card">
+        <p class="eyebrow">Pointer Lock Ready</p>
+        <h2 id="pause-room-name">Skyline Lobby</h2>
+        <p>Room code: <strong id="pause-room-code">-----</strong></p>
+        <div class="actions">
+          <button id="resume-button" class="primary">Lock Mouse & Resume</button>
+          <button id="copy-room" class="secondary">Copy Room Code</button>
+        </div>
+        <p class="status compact-text">Press <strong>Esc</strong> to release the mouse and reopen this panel.</p>
+      </section>
+    </div>
+
+    <div id="hud" class="hud hidden">
+      <div class="hud-row">
+        <div class="pill">
+          <span>Server</span>
+          <strong id="hud-room">Offline</strong>
+        </div>
+        <div class="pill">
+          <span>Players</span>
+          <strong id="hud-players">0</strong>
+        </div>
+        <div class="pill">
+          <span>Checkpoint</span>
+          <strong id="hud-checkpoint">0 / 0</strong>
+        </div>
+        <div class="pill">
+          <span>Timer</span>
+          <strong id="hud-timer">00:00.000</strong>
+        </div>
+        <div class="pill">
+          <span>Best</span>
+          <strong id="hud-best">--</strong>
+        </div>
+      </div>
+      <div class="hud-row lower">
+        <div id="hud-tip" class="tip-chip">Wall-slide by pressing into a side wall while airborne.</div>
+      </div>
+    </div>
+
+    <div id="reticle" class="reticle hidden"></div>
+    <div id="toast" class="toast hidden"></div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+

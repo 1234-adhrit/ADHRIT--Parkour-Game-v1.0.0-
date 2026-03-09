@@ -1,0 +1,10 @@
+{
+  "name": "skyline-parkour",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser multiplayer 3D parkour game with room-based servers.",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
+
